@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
+
 
 namespace Draw
 {
@@ -26,6 +28,7 @@ namespace Draw
             this.Width = shape.Width;
             this.Location = shape.Location;
             this.OutlineColor = shape.OutlineColor;
+			this.OutlineTickness = shape.OutlineTickness;
             this.FillColor = shape.FillColor;
             this.rectangle = shape.rectangle;
         }
@@ -56,6 +59,13 @@ namespace Draw
 		{
 			get { return outlineColor; }
 			set { outlineColor = value; }
+		}
+
+		private float outlineTickness;
+		public virtual float OutlineTickness
+		{
+			get { return outlineTickness; }
+			set { outlineTickness = value ; }
 		}
 
 		/// <summary>

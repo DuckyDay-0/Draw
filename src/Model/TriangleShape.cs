@@ -30,7 +30,7 @@ namespace Draw
             {
                 PointF[] points = { A, B, C };
                 grfx.FillPolygon(brush, points);
-                grfx.DrawPolygon(new Pen(OutlineColor), points);
+                grfx.DrawPolygon(new Pen(OutlineColor, OutlineTickness), points);
             }
         }
 

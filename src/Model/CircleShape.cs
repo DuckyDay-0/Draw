@@ -32,6 +32,6 @@ public class CircleShape : Shape
     {
         base.DrawSelf(grfx);
         grfx.FillEllipse(new SolidBrush(FillColor), Location.X, Location.Y, Radius * 2, Radius * 2);
-        grfx.DrawEllipse(new Pen(OutlineColor), Location.X, Location.Y, Radius * 2, Radius * 2);
+        grfx.DrawEllipse(new Pen(OutlineColor, OutlineTickness), Location.X, Location.Y, Radius * 2, Radius * 2);
     }
 }

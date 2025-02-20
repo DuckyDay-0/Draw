@@ -15,7 +15,7 @@ namespace Draw
 		/// Агрегирания диалогов процесор във формата улеснява манипулацията на модела.
 		/// </summary>
 		private DialogProcessor dialogProcessor = new DialogProcessor();
-		
+		private ToolTip toolTip = new ToolTip();
 		public MainForm()
 		{
 			//
@@ -56,9 +56,10 @@ namespace Draw
                 {
                     string shapeName = addShapeForm.shapeName;
                     Color outline = addShapeForm.shapeOutlineColor;
+					float outlineTickness = addShapeForm.outlineTickness;
                     Color filler = addShapeForm.shapeFillerColor;
 
-                    dialogProcessor.AddRandomRectangle(shapeName, outline, filler);
+                    dialogProcessor.AddRandomRectangle(shapeName, outline, filler, outlineTickness);
                     statusBar.Items[0].Text = "Последно действие: Рисуване на правоъгълник";
 
                     viewPort.Invalidate();
@@ -80,9 +81,10 @@ namespace Draw
 				{
 					string shapeName = addShapeForm.shapeName;
 					Color outlineColor = addShapeForm.shapeOutlineColor;
+					float outlineTickness = addShapeForm.outlineTickness;
 					Color fillerColor = addShapeForm.shapeFillerColor;
 
-                    dialogProcessor.AddRandomEllipse(shapeName, outlineColor, fillerColor);
+                    dialogProcessor.AddRandomEllipse(shapeName, outlineColor, fillerColor, outlineTickness);
 
                     statusBar.Items[0].Text = "Последно действие: Рисуване на елипса";
 
@@ -99,9 +101,10 @@ namespace Draw
 				{
 					string shapeName = addShapeForm.shapeName;
 					Color outlineColor = addShapeForm.shapeOutlineColor;
+					float outlineTickness = addShapeForm.outlineTickness;
 					Color fillerColor = addShapeForm.shapeFillerColor;
 
-					dialogProcessor.AddRandomCircle(shapeName, outlineColor, fillerColor);
+					dialogProcessor.AddRandomCircle(shapeName, outlineColor, fillerColor, outlineTickness);
 
                     statusBar.Items[0].Text = "Последно действие: Рисуване на кръг";
 
@@ -118,9 +121,10 @@ namespace Draw
 				{ 
 					string shapeName = addShapeForm.shapeName;
 					Color outline = addShapeForm.shapeOutlineColor;
+					float outlineTickness = addShapeForm.outlineTickness;
 					Color filler = addShapeForm.shapeFillerColor;
 
-					dialogProcessor.AddRandomTriangle(shapeName, outline, filler);
+					dialogProcessor.AddRandomTriangle(shapeName, outline, filler, outlineTickness);
 					statusBar.Items[0].Text = "Последно действие: Рисуване на триъгълник";
 					viewPort.Invalidate();
 				}
@@ -174,6 +178,16 @@ namespace Draw
         /// </summary>
         void ViewPortMouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
+			Shape hoveredAboveShape = dialogProcessor.ContainsPoint(e.Location);
+
+			if (hoveredAboveShape != null)
+			{
+				toolTip.SetToolTip(viewPort, hoveredAboveShape.ShapeName);
+			}
+			else 
+			{
+				toolTip.SetToolTip(viewPort,"");
+			}
 			if (dialogProcessor.IsDragging) {
 				if (dialogProcessor.Selection != null) statusBar.Items[0].Text = "Последно действие: Влачене";
 				dialogProcessor.TranslateTo(e.Location);

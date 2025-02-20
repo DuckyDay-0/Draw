@@ -63,7 +63,7 @@ namespace Draw
         /// <summary>
         /// Добавя примитив - правоъгълник на произволно място върху клиентската област.
         /// </summary>
-        public void AddRandomRectangle(string name,Color outline, Color filler)
+        public void AddRandomRectangle(string name,Color outline, Color filler,float outlineTickness)
         {
             Random rnd = new Random();
             
@@ -73,6 +73,7 @@ namespace Draw
             RectangleShape rect = new RectangleShape(new Rectangle(x, y, 100, 200));
             rect.ShapeName = name;
             rect.FillColor = filler;
+            rect.OutlineTickness = outlineTickness;
             rect.OutlineColor = outline;
             
 
@@ -86,7 +87,7 @@ namespace Draw
         /// <param name="shapeName"></param>
         /// <param name="outline"></param>
         /// <param name="filler"></param>
-        public void AddRandomEllipse(string shapeName, Color outline, Color filler)
+        public void AddRandomEllipse(string shapeName, Color outline, Color filler, float outlineTickness)
         {
             Random rnd = new Random();
             int x = rnd.Next(100, 1000);
@@ -95,6 +96,7 @@ namespace Draw
             EllipseShape ellipse = new EllipseShape(new Rectangle(x, y, 100, 200));
             ellipse.ShapeName = shapeName;
             ellipse.OutlineColor = outline;
+            ellipse.OutlineTickness = outlineTickness;
             ellipse.FillColor = filler;
 
             ShapeList.Add(ellipse);
@@ -107,7 +109,7 @@ namespace Draw
         /// <param name="shapeName"></param>
         /// <param name="outline"></param>
         /// <param name="filler"></param>
-        public void AddRandomCircle(string shapeName, Color outline, Color filler)
+        public void AddRandomCircle(string shapeName, Color outline, Color filler,float outlineTickness)
         { 
             Random rnd = new Random();
             int x = rnd.Next(100,1000);
@@ -116,12 +118,13 @@ namespace Draw
             CircleShape circle = new CircleShape(new Rectangle(x - 100, y - 100, 200, 200), 100);
             circle.ShapeName = shapeName;
             circle.OutlineColor = outline;
+            circle.OutlineTickness = outlineTickness;   
             circle.FillColor = filler;
 
             ShapeList.Add(circle);
         }
 
-        public void AddRandomTriangle(string shapeName, Color outline, Color filler)
+        public void AddRandomTriangle(string shapeName, Color outline, Color filler, float outlineTickness)
         {
             // Дефиниране на координатите на върховете
             PointF A = new PointF(200, 100);
@@ -132,6 +135,7 @@ namespace Draw
             TriangleShape triangle = new TriangleShape(A, B, C);
             triangle.ShapeName = shapeName;//Impement further
             triangle.FillColor = filler;
+            triangle.OutlineTickness= outlineTickness;
             triangle.OutlineColor = outline;
 
             // Добавяне в списъка с фигури
