@@ -16,7 +16,7 @@ namespace Draw
         {
             InitializeComponent();
         }
-
+        
         private void OnBtnShapeOutlineColor(object sender, EventArgs e)
         {
             using (ColorDialog colorDialog = new ColorDialog())

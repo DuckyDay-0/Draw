@@ -1,4 +1,5 @@
 ﻿
+using Draw.src.GUI;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -38,6 +39,13 @@ namespace Draw
         {
             get { return isDragging; }
             set { isDragging = value; }
+        }
+
+        private bool isInEditState = false;
+        public bool IsInEditState
+        {
+            get { return isInEditState; }
+            set { isInEditState = value; }
         }
 
         private bool isInDeleteState;

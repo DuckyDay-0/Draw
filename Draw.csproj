@@ -72,6 +72,12 @@
     <Compile Include="src\GUI\DoubleBufferedPanel.Designer.cs">
       <DependentUpon>DoubleBufferedPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\GUI\EditShapeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\GUI\EditShapeForm.Designer.cs">
+      <DependentUpon>EditShapeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\GUI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="src\GUI\DoubleBufferedPanel.resx">
       <DependentUpon>DoubleBufferedPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\GUI\EditShapeForm.resx">
+      <DependentUpon>EditShapeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\GUI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
