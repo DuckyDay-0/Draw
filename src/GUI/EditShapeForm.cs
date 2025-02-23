@@ -11,7 +11,7 @@ namespace Draw.src.GUI
 {
     public partial class EditShapeForm : Form
     {
-        public string editShapeName { get; set; }
+        public string editShapeName { get; set; } = "";
         public Color editShapeOutlineColor { get; set; } = Color.Black;
         public float editOutlineTickness { get; set; } = 1;
         public Color editShapeFillerColor { get; set; } = Color.White;
@@ -31,6 +31,12 @@ namespace Draw.src.GUI
 
         public EditShapeForm(Shape shape)
         {
+            if (shape == null)
+            {
+                MessageBox.Show("Грешка: Подадената фигура е null!", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Спира изпълнението на конструктора
+            }
+
             InitializeComponent();
             this.editShapeName = shape.ShapeName;//error
             this.editShapeOutlineColor = shape.OutlineColor;

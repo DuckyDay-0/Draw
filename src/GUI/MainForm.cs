@@ -284,10 +284,14 @@ namespace Draw
 		/// <param name="e"></param>
 		public void ViewPortMouseDownOnEditBtn(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
-            if (dialogProcessor.IsInEditState && dialogProcessor.Selection != null)
+            if (dialogProcessor.IsInEditState)
             {
-                dialogProcessor.Selection = dialogProcessor.ContainsPoint(e.Location);
-                EditSelectedShape(dialogProcessor.Selection);
+				if (dialogProcessor.Selection != null)
+				{ 
+			        dialogProcessor.Selection = dialogProcessor.ContainsPoint(e.Location);
+					EditSelectedShape(dialogProcessor.Selection);
+				}
+
             }
         }
 		/// <summary>
@@ -297,8 +301,8 @@ namespace Draw
 		void ViewPortMouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
 			dialogProcessor.IsDragging = false;
-			dialogProcessor.IsInDeleteState = false;
-			dialogProcessor.IsInEditState = false;
+			//dialogProcessor.IsInDeleteState = false;
+			//dialogProcessor.IsInEditState = false;
 		}
 
 		/// <summary>
@@ -346,18 +350,21 @@ namespace Draw
 
         public virtual void EditSelectedShape(Shape shape)
         {
-            using (EditShapeForm editForm = new EditShapeForm(shape))
-            {
-                if (editForm.ShowDialog() == DialogResult.OK)
-                {
-                    shape.ShapeName = editForm.editShapeName;
-                    shape.OutlineColor = editForm.editShapeOutlineColor;
-                    shape.FillColor = editForm.editShapeFillerColor;
-                    shape.OutlineTickness = editForm.editOutlineTickness;
+			if (shape != null)
+			{
+				using (EditShapeForm editForm = new EditShapeForm(shape))
+				{
+					if (editForm.ShowDialog() == DialogResult.OK)
+					{
+						shape.ShapeName = editForm.editShapeName;
+						shape.OutlineColor = editForm.editShapeOutlineColor;
+						shape.FillColor = editForm.editShapeFillerColor;
+						shape.OutlineTickness = editForm.editOutlineTickness;
 
-					viewPort.Invalidate();// Прерисуваме формата
-                }
-            }
+						viewPort.Invalidate();// Прерисуваме формата
+					}
+				}
+			}
         }
     }
 }
