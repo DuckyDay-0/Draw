@@ -92,6 +92,10 @@
     <Compile Include="src\Model\TriangleShape.cs" />
     <Compile Include="src\Processors\DialogProcessor.cs" />
     <Compile Include="src\Processors\DisplayProcessor.cs" />
+    <Compile Include="src\Services\DeleteShapeServices.cs" />
+    <Compile Include="src\Services\ImageService.cs" />
+    <Compile Include="src\Services\EditShapeServices.cs" />
+    <Compile Include="src\Services\PickUpShapeServices.cs" />
     <EmbeddedResource Include="src\GUI\AddShapeForm.resx">
       <DependentUpon>AddShapeForm.cs</DependentUpon>
     </EmbeddedResource>

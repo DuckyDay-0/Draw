@@ -112,6 +112,7 @@
             this.button2.TabIndex = 15;
             this.button2.Text = "Избери цвят на запълване";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.EditShapeFillerCollor);
             // 
             // label3
             // 

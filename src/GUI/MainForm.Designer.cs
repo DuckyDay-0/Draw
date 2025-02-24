@@ -64,7 +64,7 @@
             this.helpToolStripMenuItem});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(924, 30);
+            this.mainMenu.Size = new System.Drawing.Size(924, 28);
             this.mainMenu.TabIndex = 1;
             this.mainMenu.Text = "menuStrip1";
             // 
@@ -123,8 +123,9 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.aboutToolStripMenuItem.Text = "About...";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutInfoBtn);
             // 
             // statusBar
             // 
@@ -152,12 +153,11 @@
             this.toolStripButton2,
             this.toolStripButton3,
             this.pickUpSpeedButton,
-
             this.toolStripButton4,
             this.deleteButton});
-            this.speedMenu.Location = new System.Drawing.Point(0, 30);
+            this.speedMenu.Location = new System.Drawing.Point(0, 28);
             this.speedMenu.Name = "speedMenu";
-            this.speedMenu.Size = new System.Drawing.Size(924, 31);
+            this.speedMenu.Size = new System.Drawing.Size(924, 27);
             this.speedMenu.TabIndex = 3;
             this.speedMenu.Text = "toolStrip1";
             // 
@@ -168,7 +168,7 @@
             this.drawRectangleSpeedButton.Image = ((System.Drawing.Image)(resources.GetObject("drawRectangleSpeedButton.Image")));
             this.drawRectangleSpeedButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.drawRectangleSpeedButton.Name = "drawRectangleSpeedButton";
-            this.drawRectangleSpeedButton.Size = new System.Drawing.Size(29, 28);
+            this.drawRectangleSpeedButton.Size = new System.Drawing.Size(29, 24);
             this.drawRectangleSpeedButton.Text = "DrawRectangleButton";
             this.drawRectangleSpeedButton.Click += new System.EventHandler(this.DrawRectangleSpeedButtonClick);
             // 
@@ -216,7 +216,6 @@
             this.pickUpSpeedButton.Size = new System.Drawing.Size(29, 24);
             this.pickUpSpeedButton.Text = "toolStripButton1";
             this.pickUpSpeedButton.Click += new System.EventHandler(this.PickUpShapeButton);
-
             // 
             // toolStripButton4
             // 
@@ -226,7 +225,7 @@
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(29, 28);
+            this.toolStripButton4.Size = new System.Drawing.Size(29, 24);
             this.toolStripButton4.Text = "editShapeButton";
             this.toolStripButton4.Click += new System.EventHandler(this.EditShapeButton);
             // 
@@ -246,10 +245,10 @@
             // viewPort
             // 
             this.viewPort.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.viewPort.Location = new System.Drawing.Point(0, 61);
+            this.viewPort.Location = new System.Drawing.Point(0, 55);
             this.viewPort.Margin = new System.Windows.Forms.Padding(5);
             this.viewPort.Name = "viewPort";
-            this.viewPort.Size = new System.Drawing.Size(924, 438);
+            this.viewPort.Size = new System.Drawing.Size(924, 444);
             this.viewPort.TabIndex = 4;
             this.viewPort.Paint += new System.Windows.Forms.PaintEventHandler(this.ViewPortPaint);
             this.viewPort.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ViewPortMouseDown);

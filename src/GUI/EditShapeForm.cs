@@ -29,12 +29,24 @@ namespace Draw.src.GUI
             }
         }
 
+        private void EditShapeFillerCollor(object sender, EventArgs e)
+        {
+            using (ColorDialog colorDialog = new ColorDialog())
+            {
+                if (colorDialog.ShowDialog() == DialogResult.OK)
+                {
+                    this.editShapeFillerColor = colorDialog.Color;
+                    button2.BackColor = editShapeFillerColor;
+                }
+            }
+        }
+
         public EditShapeForm(Shape shape)
         {
             if (shape == null)
             {
                 MessageBox.Show("Грешка: Подадената фигура е null!", "Грешка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Спира изпълнението на конструктора
+                return;
             }
 
             InitializeComponent();

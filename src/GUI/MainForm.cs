@@ -1,8 +1,10 @@
 ﻿using Draw.src.GUI;
+using Draw.src.Services;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace Draw
@@ -18,16 +20,14 @@ namespace Draw
 		/// </summary>
 		private DialogProcessor dialogProcessor = new DialogProcessor();
 		private ToolTip toolTip = new ToolTip();
+		private DeleteShapeServices deleteShapeServices;
+		private PickUpShapeServices pickUpShapeServices;
+
 		public MainForm()
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
 			InitializeComponent();
-
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
+			deleteShapeServices = new DeleteShapeServices(dialogProcessor, statusBar, viewPort);
+			pickUpShapeServices = new PickUpShapeServices(dialogProcessor, statusBar, viewPort,pickUpSpeedButton); ;
 		}
 
 		/// <summary>
@@ -139,13 +139,16 @@ namespace Draw
 		/// Реализацията се диалогът с потребителя, при който се избира "най-горния" елемент от екрана.
 		/// </summary>
 		void ViewPortMouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
-		{			
-				ViewPortMouseDownOnPickUpBtn(sender, e);
+		{
+			OnPickUpButton(sender, e);
 
-				ViewPortMouseDownOnDeleteBtn(sender, e);
+			OnDeleteBtn(sender, e);
 
-				ViewPortMouseDownOnEditBtn(sender, e);			
-        }
+			OnEditBtn(sender, e);
+		}
+
+
+
 		void ViewPortDeleteButtonOn(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
 			if (deleteButton.Checked)
@@ -153,23 +156,25 @@ namespace Draw
 				statusBar.Items[0].Text = "Режим на триене : Вкл";
 				dialogProcessor.IsInDeleteState = true;
 
-                toolStripButton4.Checked = false;
-                pickUpSpeedButton.Checked = false;
+				toolStripButton4.Checked = false;
+				pickUpSpeedButton.Checked = false;
 
-                dialogProcessor.IsInEditState = false;
-                dialogProcessor.IsDragging = false;
-            }
+				dialogProcessor.IsInEditState = false;
+				dialogProcessor.IsDragging = false;
+			}
 			else
 			{
 				dialogProcessor.IsInDeleteState = false;
 			}
 		}
 
-        private void EditShapeButton(object sender, EventArgs e)
-        {
+
+
+		private void EditShapeButton(object sender, EventArgs e)
+		{
 			if (toolStripButton4.Checked)
 			{
-                statusBar.Items[0].Text = "Режим на редактиране : Вкл";
+				statusBar.Items[0].Text = "Режим на редактиране : Вкл";
 				dialogProcessor.IsInEditState = true;
 
 
@@ -178,20 +183,20 @@ namespace Draw
 
 				dialogProcessor.IsInDeleteState = false;
 				dialogProcessor.IsDragging = false;
-            }
-			else 
+			}
+			else
 			{
 				dialogProcessor.IsInEditState = false;
 			}
 
-        }
-		
+		}
 
-        /// <summary>
-        /// Прихващане на преместването на мишката.
-        /// Ако сме в режм на "влачене", то избрания елемент се транслира.
-        /// </summary>
-        void ViewPortMouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+
+		/// <summary>
+		/// Прихващане на преместването на мишката.
+		/// Ако сме в режм на "влачене", то избрания елемент се транслира.
+		/// </summary>
+		void ViewPortMouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
 			Shape hoveredAboveShape = dialogProcessor.ContainsPoint(e.Location);
 
@@ -211,7 +216,12 @@ namespace Draw
 			}
 		}
 
-		private void PickUpShapeButton(object sender, EventArgs e)
+
+		public void OnPickUpButton(object sender, MouseEventArgs e)
+		{
+			pickUpShapeServices.ViewPortMouseDownOnPickUpBtn(sender, e);
+		}
+        private void PickUpShapeButton(object sender, EventArgs e)
 		{
 			if (pickUpSpeedButton.Checked)
 			{
@@ -229,71 +239,29 @@ namespace Draw
             }
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		public void ViewPortMouseDownOnPickUpBtn(object sender, System.Windows.Forms.MouseEventArgs e)
-		{
-			if (pickUpSpeedButton.Checked)
-			{
-				dialogProcessor.Selection = dialogProcessor.ContainsPoint(e.Location);
-				if (dialogProcessor.Selection != null)
-				{
-					statusBar.Items[0].Text = "Последно действие: Селекция на примитив";
-					dialogProcessor.LastLocation = e.Location;
-                    dialogProcessor.IsDragging = true;
-                    viewPort.Invalidate();
-				}
-			}
-			else
-			{ 
-				pickUpSpeedButton.Checked = false;
-			}
-        }
-
 
 
 		/// <summary>
-		/// 
+		/// Изтриване на селектираната фигура
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		public void ViewPortMouseDownOnDeleteBtn(object sender, System.Windows.Forms.MouseEventArgs e)
-		{
-            if (dialogProcessor.IsInDeleteState)
-            {
-
-                dialogProcessor.Selection = dialogProcessor.ContainsPoint(e.Location);
-
-                if (dialogProcessor.Selection != null)
-                {
-                    statusBar.Items[0].Text = "Последно действие: Изтриване";
-                    dialogProcessor.DeleteSelectedShape();
-                    viewPort.Refresh();
-                }
-            }			
-        }
+		public void OnDeleteBtn(object sender, System.Windows.Forms.MouseEventArgs e)
+		{ 
+			deleteShapeServices.ViewPortMouseDownOnDeleteBtn(sender, e);
+		}
 
 
 		/// <summary>
-		/// 
+		/// Редакция на селектираната фигура
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		public void ViewPortMouseDownOnEditBtn(object sender, System.Windows.Forms.MouseEventArgs e)
+		public void OnEditBtn(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
-            if (dialogProcessor.IsInEditState)
-            {
-				if (dialogProcessor.Selection != null)
-				{ 
-			        dialogProcessor.Selection = dialogProcessor.ContainsPoint(e.Location);
-					EditSelectedShape(dialogProcessor.Selection);
-				}
-
-            }
-        }
+			EditShapeServices.ViewPortMouseDownOnEditBtn(sender,e,viewPort,dialogProcessor);
+		}
+		
 		/// <summary>
 		/// Прихващане на отпускането на бутона на мишката.
 		/// Излизаме от режим "влачене".
@@ -301,39 +269,24 @@ namespace Draw
 		void ViewPortMouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
 			dialogProcessor.IsDragging = false;
-			//dialogProcessor.IsInDeleteState = false;
-			//dialogProcessor.IsInEditState = false;
 		}
+
+
+
+        private void AboutInfoBtn(object sender, EventArgs e)
+        {
+			MessageBox.Show("asd");//info about project/tutorial 
+        }
+
 
 		/// <summary>
-		/// Bitmap - масив от пиксели ,който специфицира цвета на всички пиксели в квадратна форма
+		/// Запазване на изображението като .png/.jpeg/all files формат
 		/// </summary>
-		private void SaveCanvasAsImage()
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+        private void SaveAsImageButton(object sender, EventArgs e)
 		{
-			using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-			{
-				saveFileDialog.Filter = "PNG Image|*.png";
-				saveFileDialog.Filter = "JPEG Image|*.jpeg";
-				saveFileDialog.Title = "Запази изображението";
-				saveFileDialog.FileName = "untitled.png";
-
-				if (saveFileDialog.ShowDialog() == DialogResult.OK)
-				{
-
-					using (Bitmap bitmap = new Bitmap(viewPort.Width, viewPort.Height))
-					{
-						viewPort.DrawToBitmap(bitmap, new Rectangle(0, 0, viewPort.Width, viewPort.Height));
-						bitmap.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
-					}
-
-					MessageBox.Show("Изображението е запазено успешно!", "Запазване", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				}
-			}
-		}
-
-		private void SaveAsImageButton(object sender, EventArgs e)
-		{
-			SaveCanvasAsImage();
+			ImageService.SaveCanvasAsImage(viewPort);
 		}
 
 		/// <summary>
@@ -341,30 +294,11 @@ namespace Draw
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-
 		private void ClearCanvasButton(object sender, EventArgs e)
 		{
 			dialogProcessor.ClearShapeList();
 			viewPort.Refresh();
 		}
-
-        public virtual void EditSelectedShape(Shape shape)
-        {
-			if (shape != null)
-			{
-				using (EditShapeForm editForm = new EditShapeForm(shape))
-				{
-					if (editForm.ShowDialog() == DialogResult.OK)
-					{
-						shape.ShapeName = editForm.editShapeName;
-						shape.OutlineColor = editForm.editShapeOutlineColor;
-						shape.FillColor = editForm.editShapeFillerColor;
-						shape.OutlineTickness = editForm.editOutlineTickness;
-
-						viewPort.Invalidate();// Прерисуваме формата
-					}
-				}
-			}
-        }
+		
     }
 }
