@@ -269,6 +269,7 @@ namespace Draw
 		void ViewPortMouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
 			dialogProcessor.IsDragging = false;
+			
 		}
 
 

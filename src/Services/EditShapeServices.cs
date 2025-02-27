@@ -34,6 +34,7 @@ namespace Draw.src.Services
                         shape.OutlineColor = editForm.editShapeOutlineColor;
                         shape.FillColor = editForm.editShapeFillerColor;
                         shape.OutlineTickness = editForm.editOutlineTickness;
+                        shape.Transparency = editForm.editShapeTransperancy;
 
                         viewPort.Invalidate();// Прерисуваме формата
                     }

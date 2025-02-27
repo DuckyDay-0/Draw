@@ -40,6 +40,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.transparency = new System.Windows.Forms.TrackBar();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.transparency)).BeginInit();
             this.SuspendLayout();
@@ -157,11 +158,22 @@
             this.transparency.TabIndex = 12;
             this.transparency.Scroll += new System.EventHandler(this.TransparencyScroll);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(17, 497);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(350, 31);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Прозрачност на цветовете";
+            // 
             // AddShapeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(350, 688);
+            this.ClientSize = new System.Drawing.Size(379, 688);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.transparency);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label4);
@@ -196,5 +208,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.TrackBar transparency;
+        private System.Windows.Forms.Label label5;
     }
 }

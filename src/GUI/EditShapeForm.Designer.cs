@@ -38,7 +38,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.editTransparency = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editTransparency)).BeginInit();
             this.SuspendLayout();
             // 
             // numericUpDown1
@@ -63,7 +66,7 @@
             // 
             this.button4.AccessibleName = "btnShapeCancelSettings";
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(253, 521);
+            this.button4.Location = new System.Drawing.Point(266, 662);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(102, 35);
             this.button4.TabIndex = 19;
@@ -74,7 +77,7 @@
             // 
             this.button1.AccessibleName = "btnSaveShapeSettings";
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(29, 521);
+            this.button1.Location = new System.Drawing.Point(12, 662);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 35);
             this.button1.TabIndex = 18;
@@ -144,11 +147,32 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Име на примитив";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(18, 504);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(350, 31);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Прозрачност на цветовете";
+            // 
+            // editTransparency
+            // 
+            this.editTransparency.AccessibleName = "transparencyTrackBar";
+            this.editTransparency.Location = new System.Drawing.Point(67, 563);
+            this.editTransparency.Name = "editTransparency";
+            this.editTransparency.Size = new System.Drawing.Size(248, 56);
+            this.editTransparency.TabIndex = 24;
+            this.editTransparency.Scroll += new System.EventHandler(this.Transparency_Scroll);
+            // 
             // EditShapeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 577);
+            this.ClientSize = new System.Drawing.Size(380, 709);
+            this.Controls.Add(this.editTransparency);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button4);
@@ -162,6 +186,7 @@
             this.Name = "EditShapeForm";
             this.Text = "EditShapeForm";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editTransparency)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,5 +204,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TrackBar editTransparency;
     }
 }

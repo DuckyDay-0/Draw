@@ -15,6 +15,7 @@ namespace Draw.src.GUI
         public Color editShapeOutlineColor { get; set; } = Color.Black;
         public float editOutlineTickness { get; set; } = 1;
         public Color editShapeFillerColor { get; set; } = Color.White;
+        public int editShapeTransperancy { get; set; } = 255;
 
         private void EditShapeOutlineCollor(object sender ,EventArgs e)
         {
@@ -41,6 +42,24 @@ namespace Draw.src.GUI
             }
         }
 
+        private void OnEditTrackBarTransparency()
+        {
+            editTransparency.Minimum = 0;
+            editTransparency.Maximum = 100;
+            editTransparency.Value = 100;
+            editTransparency.TickFrequency = 10;
+            editTransparency.Scroll += Transparency_Scroll;
+        }
+
+        private void Transparency_Scroll(object sender, EventArgs e)
+        {
+            editShapeTransperancy = (int)(255 * (editTransparency.Value / 100.0));
+
+            editShapeOutlineColor = Color.FromArgb(editShapeTransperancy, editShapeOutlineColor.R, editShapeOutlineColor.G, editShapeOutlineColor.B);
+            editShapeFillerColor = Color.FromArgb(editShapeTransperancy, editShapeFillerColor.R, editShapeFillerColor.G, editShapeFillerColor.B);
+
+        }
+
         public EditShapeForm(Shape shape)
         {
             if (shape == null)
@@ -50,15 +69,19 @@ namespace Draw.src.GUI
             }
 
             InitializeComponent();
+            OnEditTrackBarTransparency();
+
             this.editShapeName = shape.ShapeName;//error
             this.editShapeOutlineColor = shape.OutlineColor;
             this.editOutlineTickness = shape.OutlineTickness;
             this.editShapeFillerColor = shape.FillColor;
+            this.editShapeTransperancy = shape.Transparency;
 
             textBox1.Text = this.editShapeName;
             button3.BackColor = this.editShapeOutlineColor;
             button2.BackColor = this.editShapeFillerColor;
             numericUpDown1.Value = (decimal)this.editOutlineTickness;
+            
         }
 
         private void OnBtnOK(object sender, EventArgs e)
@@ -69,5 +92,6 @@ namespace Draw.src.GUI
             Close();
         }
 
+        
     }
 }

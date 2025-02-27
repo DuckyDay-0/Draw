@@ -30,7 +30,7 @@ namespace Draw
             this.OutlineColor = shape.OutlineColor;
 			this.OutlineTickness = shape.OutlineTickness;
             this.FillColor = shape.FillColor;
-			//this.Transparency = shape.Transparency;
+			this.Transparency = shape.Transparency;
             this.rectangle = shape.rectangle;
 
         }
@@ -49,15 +49,15 @@ namespace Draw
 		}
 
 
-		//private Color transparency;
-		//public virtual Color Transparency
-		//{
-		//	get { return transparency; }
-		//	set { transparency = value; }
-		//}
+		private int transparency;
+		public virtual int Transparency
+		{
+			get { return transparency; }
+			set { transparency = value; }
+		}
 
 
-        private string shapeName;
+		private string shapeName;
 		public virtual string ShapeName
 		{
 			get { return shapeName; }
