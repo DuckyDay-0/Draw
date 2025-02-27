@@ -39,7 +39,9 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.transparency = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transparency)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -108,7 +110,7 @@
             // 
             this.button1.AccessibleName = "btnSaveShapeSettings";
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(12, 511);
+            this.button1.Location = new System.Drawing.Point(12, 641);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 35);
             this.button1.TabIndex = 7;
@@ -120,7 +122,7 @@
             // 
             this.button4.AccessibleName = "btnShapeCancelSettings";
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(236, 511);
+            this.button4.Location = new System.Drawing.Point(236, 641);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(102, 35);
             this.button4.TabIndex = 8;
@@ -145,13 +147,22 @@
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(115, 22);
             this.numericUpDown1.TabIndex = 11;
-            //this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // transparency
+            // 
+            this.transparency.AccessibleName = "transparencyTrackBar";
+            this.transparency.Location = new System.Drawing.Point(50, 551);
+            this.transparency.Name = "transparency";
+            this.transparency.Size = new System.Drawing.Size(248, 56);
+            this.transparency.TabIndex = 12;
+            this.transparency.Scroll += new System.EventHandler(this.TransparencyScroll);
             // 
             // AddShapeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(350, 558);
+            this.ClientSize = new System.Drawing.Size(350, 688);
+            this.Controls.Add(this.transparency);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button4);
@@ -165,6 +176,7 @@
             this.Name = "AddShapeForm";
             this.Text = "AddShapeForm";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transparency)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,5 +195,6 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.TrackBar transparency;
     }
 }
