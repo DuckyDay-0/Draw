@@ -22,12 +22,14 @@ namespace Draw
 		private ToolTip toolTip = new ToolTip();
 		private DeleteShapeServices deleteShapeServices;
 		private PickUpShapeServices pickUpShapeServices;
+		private RotateShapeService rotateShapeServices;
 
 		public MainForm()
 		{
 			InitializeComponent();
 			deleteShapeServices = new DeleteShapeServices(dialogProcessor, statusBar, viewPort);
 			pickUpShapeServices = new PickUpShapeServices(dialogProcessor, statusBar, viewPort,pickUpSpeedButton); ;
+			rotateShapeServices = new RotateShapeService(viewPort, dialogProcessor);
 		}
 
 		/// <summary>
@@ -251,6 +253,10 @@ namespace Draw
 			deleteShapeServices.ViewPortMouseDownOnDeleteBtn(sender, e);
 		}
 
+		public void OnScrollBtn(object sender, MouseEventArgs e)
+		{
+			rotateShapeServices.ViewPortMouseWheel(sender, e);
+		}
 
 		/// <summary>
 		/// Редакция на селектираната фигура

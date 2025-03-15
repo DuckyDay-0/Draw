@@ -9,7 +9,7 @@ namespace Draw
 	/// <summary>
 	/// Класът, който ще бъде използван при управляване на дисплейната система.
 	/// </summary>
-	public class DisplayProcessor
+	public class DisplayProcessor : Shape
 	{
 		#region Constructor
 		
@@ -63,7 +63,7 @@ namespace Draw
 		public virtual void DrawShape(Graphics grfx, Shape item)
 		{
 			item.DrawSelf(grfx);
-		}
+        }
 
 		#endregion
 	}

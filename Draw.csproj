@@ -96,6 +96,7 @@
     <Compile Include="src\Services\ImageService.cs" />
     <Compile Include="src\Services\EditShapeServices.cs" />
     <Compile Include="src\Services\PickUpShapeServices.cs" />
+    <Compile Include="src\Services\RotateShapeService.cs" />
     <EmbeddedResource Include="src\GUI\AddShapeForm.resx">
       <DependentUpon>AddShapeForm.cs</DependentUpon>
     </EmbeddedResource>

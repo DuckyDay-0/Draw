@@ -54,10 +54,12 @@ namespace Draw
         public override void DrawSelf(Graphics grfx)
         {
             base.DrawSelf(grfx);
-
+            grfx.TranslateTransform(Rectangle.X + Width / 2, Rectangle.Y + Height / 2);
+            grfx.RotateTransform(RotationAngle);
+            grfx.TranslateTransform(-Rectangle.X - Width / 2, -Rectangle.Y - Height / 2);
             grfx.FillEllipse(new SolidBrush(FillColor), Rectangle.X, Rectangle.Y, Rectangle.Width, Rectangle.Height);
             grfx.DrawEllipse(new Pen(OutlineColor,OutlineTickness), Rectangle.X, Rectangle.Y, Rectangle.Width, Rectangle.Height);
-
+            grfx.ResetTransform();
         }
     }
 }
