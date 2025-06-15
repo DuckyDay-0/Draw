@@ -41,6 +41,11 @@ namespace Draw
             }
         }
 
+
+
+
+
+
         private void OnBtnShapeFillerColor(object sender, EventArgs e)
         {
             using (ColorDialog colorDialog = new ColorDialog())

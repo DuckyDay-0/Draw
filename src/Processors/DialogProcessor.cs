@@ -1,5 +1,6 @@
 ﻿
 using Draw.src.GUI;
+using Draw.src.Model;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -87,7 +88,19 @@ namespace Draw
 
             ShapeList.Add(rect);
         }
+        public void AddRandomTestFigure(string shapeName, Color outline, Color filler, float outlineTickness)
+        {
+            Random rnd = new Random();
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
+            TestFigure testFigure = new TestFigure(new Rectangle(x, y, 200, 200));
+            testFigure.ShapeName = shapeName;
+            testFigure.OutlineColor = outline;
+            testFigure.OutlineTickness = outlineTickness;
+            testFigure.FillColor = filler;
+            ShapeList.Add(testFigure);
+        }
 
         /// <summary>
         /// 
@@ -110,7 +123,20 @@ namespace Draw
             ShapeList.Add(ellipse);
         }
 
+        public void AddRandomNewShape(string shapeName, Color outline, Color filler, float outlineTickness)
+        {
+            Random rnd = new Random();
+            int x = rnd.Next(100, 1000);
+            int y = rnd.Next(100, 600);
 
+            NewShape newShape = new NewShape(new Rectangle(x, y, 100, 200));
+            newShape.ShapeName = shapeName;
+            newShape.OutlineColor = outline;
+            newShape.OutlineTickness = OutlineTickness;
+            newShape.FillColor = filler;
+
+            ShapeList.Add(newShape);
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -141,7 +167,7 @@ namespace Draw
 
             // Създаване на триъгълника с фиксирани стойности
             TriangleShape triangle = new TriangleShape(A, B, C);
-            triangle.ShapeName = shapeName;//Impement further
+            triangle.ShapeName = shapeName;
             triangle.FillColor = filler;
             triangle.OutlineTickness= outlineTickness;
             triangle.OutlineColor = outline;
@@ -163,8 +189,6 @@ namespace Draw
             {
                 if (ShapeList[i].Contains(point))
                 {
-                    //ShapeList[i].FillColor = Color.Red;
-
                     return ShapeList[i];
                 }
             }

@@ -116,8 +116,45 @@ namespace Draw
 				}
 			}
 		}
+        private void drawTestFigureSpeedButton_Click(object sender, EventArgs e)
+        {
 
-		private void DrawTriangleButtonClick(object sender, EventArgs e)
+			//dialogProcessor.AddRandomTestFigure();
+			using (AddShapeForm addShapeForm = new AddShapeForm())
+			{
+				if (addShapeForm.ShowDialog() == DialogResult.OK)
+				{
+					string shapeName = addShapeForm.shapeName;
+					Color outline = addShapeForm.shapeOutlineColor;
+					float outlineTickness = addShapeForm.outlineTickness;
+					Color filler = addShapeForm.shapeFillerColor;
+
+					dialogProcessor.AddRandomTestFigure(shapeName, outline, filler, outlineTickness);
+					statusBar.Items[0].Text = "Последно действие: Рисуване на rand";
+					viewPort.Invalidate();
+				}
+			}
+			viewPort.Invalidate();
+        }
+
+		private void DrawNewShapeButton_Click(object sender, EventArgs e)
+		{
+			using (AddShapeForm addShapeForm = new AddShapeForm())
+			{
+                if (addShapeForm.ShowDialog() == DialogResult.OK)
+                {
+                    string shapeName = addShapeForm.shapeName;
+                    Color outline = addShapeForm.shapeOutlineColor;
+                    float outlineTickness = addShapeForm.outlineTickness;
+                    Color filler = addShapeForm.shapeFillerColor;
+
+                    dialogProcessor.AddRandomNewShape(shapeName, outline, filler, outlineTickness);
+                    statusBar.Items[0].Text = "Последно действие: Рисуване на newShape";
+                    viewPort.Invalidate();
+                }
+            }
+		}
+        private void DrawTriangleButtonClick(object sender, EventArgs e)
 		{
 			using (AddShapeForm addShapeForm = new AddShapeForm())
 			{
@@ -306,6 +343,7 @@ namespace Draw
 			dialogProcessor.ClearShapeList();
 			viewPort.Refresh();
 		}
-		
+
+
     }
 }
